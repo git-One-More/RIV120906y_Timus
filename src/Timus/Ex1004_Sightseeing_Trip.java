@@ -6,8 +6,8 @@ public class Ex1004_Sightseeing_Trip {
 
 	public static final int INF = 0x7ffffff;
 	public static int dist[][] = new int[110][110];
-	public static int pre[][]  = new int[110][110];
-	public static int w[][]    = new int[110][110];
+	public static int pre[][] = new int[110][110];
+	public static int w[][] = new int[110][110];
 	
 	public static int N, M, num;
 	public static int minc;
@@ -32,18 +32,10 @@ public class Ex1004_Sightseeing_Trip {
 		}
 	}
 	public static void floyd() {
-		
 		minc = INF;
 		for (int k = 1; k <= N; k++) {
-			
-			/* this finds and remembers the shortest path from the floyd matrix */
-			/* for very pair i, j < k */
 			for (int i = 1; i < k; i++) {
-				/* no need to verify vertices <= i since the graph is undirected */
 				for (int j = i + 1; j < k; j++) {
-					/* this is a cycle check, where k is the node on the return path, 
-					 * i.e  i -> -> j -> k -> i
-					 */
 					int ans = dist[i][j] + w[i][k] + w[k][j];
 					if (ans < minc) {
 						minc = ans;
@@ -58,8 +50,6 @@ public class Ex1004_Sightseeing_Trip {
 					}
 				}
 			}
-			
-			/* this is floyd for every vertices */
 			for (int i = 1; i <= N; i++) {
 				for (int j = 1; j <= N; j++) {
 					if (dist[i][j] > dist[i][k] + dist[k][j]) {
@@ -68,21 +58,11 @@ public class Ex1004_Sightseeing_Trip {
 					}
 				}
 			}
-			
-//			System.out.println("k = " + k);
-//			printMatrix(dist, N);
-//			System.out.println();
 		}
-		
 	}
-	
 	public static void main(String[] args) {
-		
 		Scanner sc = new Scanner(System.in);
-		
-		do {
-			
-			/* Read Input */
+		do{
 			N = sc.nextInt();
 			if (N == -1) {
 				break;
@@ -94,21 +74,15 @@ public class Ex1004_Sightseeing_Trip {
 					pre[i][j]  = i;
 				}
 			}
-			
 			for (int i = 1; i <= M; i++) {
-				int u   = sc.nextInt();
-				int v   = sc.nextInt();
+				int u = sc.nextInt();
+				int v = sc.nextInt();
 				int len = sc.nextInt();
 				if (dist[u][v] > len) {
-					/* keep only the shortest edges in case if there are more */
 					w[u][v] = w[v][u] = dist[u][v] = dist[v][u] = len;
 				}
 			}
-//			System.out.println("k = " + 0);
-//			printMatrix(dist, N);
-//			System.out.println();
 			floyd();
-			
 			if (minc == INF) {
 				System.out.println("No solution.");
 			} else {
@@ -118,10 +92,7 @@ public class Ex1004_Sightseeing_Trip {
 				}
 				System.out.println();
 			}
-			
 		} while (true);
-		
 		sc.close();
-		
 	}
 }

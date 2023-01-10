@@ -49,6 +49,5 @@ public class Ex1015_Test_The_Difference {
 			}
 			System.out.println();
 		}
-		
 	}
 }

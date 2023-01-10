@@ -2,7 +2,7 @@ package Timus;
 
 import java.math.BigInteger;
 import java.util.Scanner;
-class Ex1012_K_based_Numbers {
+public class Ex1012_K_based_Numbers {
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
 	    int N = sc.nextInt();
